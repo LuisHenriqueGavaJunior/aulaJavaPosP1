@@ -6,9 +6,9 @@
         <title>Editar Gênero</title>
     </head>
     <body>
-        <h1>Novo Gênero</h1>
+        <h1>Editar Gênero</h1>
             <form action="/generos/update" method="post">
-                <input type="hidden" name="id" value="${genero.id}"
+                <input type="hidden" name="id" value="${genero.id}" />
                 <div>
                     <label for="nome">Nome:</label>
                     <input type="text" name="nome" value="${genero.nome}" />

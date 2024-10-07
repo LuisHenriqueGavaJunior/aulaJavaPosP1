@@ -42,7 +42,7 @@ public class GeneroController {
     @RequestMapping("/update")
     public String update(@RequestParam("id") long id, Model ui) {
         Optional<Genero> resultado = generoRepo.findById(id);
-    
+
         if(resultado.isPresent()) {
             ui.addAttribute("genero", resultado.get());
             return "/generos/update";
@@ -54,16 +54,15 @@ public class GeneroController {
     @RequestMapping(value="/update", method=RequestMethod.POST)
     public String update(
         @RequestParam("id") long id,
-        @RequestParam("nome") String nome){
+        @RequestParam("nome") String nome) {
+        
+        Optional<Genero> resultado = generoRepo.findById(id);
 
-            Optional<Genero> resultado = generoRepo.findById(id);
+        if(resultado.isPresent()) {
+            resultado.get().setNome(nome);
+            generoRepo.save(resultado.get());
+        }
 
-            if(resultado.isPresent()) {
-                resultado.get().setNome(nome);
-                generoRepo.save(resultado.get());
-            }
-    
-            return "redirect:/generos/list";
-        };
-
+        return "redirect:/generos/list";
+    }
 }
